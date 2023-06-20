@@ -6,13 +6,17 @@ let secretNumber = Math.trunc(Math.random() * 20) + 1;
 let score = 20;
 let highscore = 0;
 
+const displayGuessMessage = function (message) {
+        document.querySelector('.guess-message').textContent = message;
+}
+
 console.log(secretNumber);
 
 document.querySelector('.again').addEventListener('click', function () {
         secretNumber = Math.trunc(Math.random() * 20) + 1;
         score = 20;
 
-        document.querySelector('.guess-message').textContent = "Начни угадывать!";
+        displayGuessMessage("Начни угадывать!");
         document.querySelector('body').style.backgroundColor = '#000';
         document.querySelector('.question').style.width = '25rem';
         document.querySelector('.question').textContent = '???';
@@ -27,11 +31,11 @@ document.querySelector('.check').addEventListener('click', function () {
 
         //No input
         if (!guessingNumber) {
-                document.querySelector('.guess-message').textContent = 'Введите число';
+                displayGuessMessage('Введите число');
 
                 //Player won
         } else if (guessingNumber === secretNumber) {
-                document.querySelector('.guess-message').textContent = 'Правильно';
+                displayGuessMessage('Правильно');
                 document.querySelector('.question').textContent = secretNumber;
                 document.querySelector('body').style.backgroundColor = 'rgb(9, 250, 21)';
                 document.querySelector('.question').style.width = '50rem';
@@ -44,37 +48,15 @@ document.querySelector('.check').addEventListener('click', function () {
                 //Number of input is wrong
         } else if (guessingNumber !== secretNumber) {
                 if (score > 1) {
-                        document.querySelector('.guess-message').textContent = guessingNumber > secretNumber ? 'Слишком большое число' : 'Слишком маленькое число';
+                        displayGuessMessage(guessingNumber > secretNumber ? 'Слишком большое число' : 'Слишком маленькое число');
                         score--;
                         document.querySelector('.score').textContent = score;
                 } else {
-                        document.querySelector('.guess-message').textContent = 'Game Over';
+                        displayGuessMessage('Game Over');
                         document.querySelector('.score').textContent = 0;
                 }
         }
-        //Too high number
-        // } else if (guessingNumber > secretNumber) {
 
-        //         if (score > 1) {
-        //                 document.querySelector('.guess-message').textContent = 'Слишком большое число';
-        //                 score--;
-        //                 document.querySelector('.score').textContent = score;
-        //         } else {
-        //                 document.querySelector('.guess-message').textContent = 'Game Over';
-        //                 document.querySelector('.score').textContent = 0;
-        //         }
-
-        //         //Too low number
-        // } else if (guessingNumber < secretNumber) {
-
-        //         if (score > 1) {
-        //                 document.querySelector('.guess-message').textContent = 'Слишком маленькое число';
-        //                 score--;
-        //                 document.querySelector('.score').textContent = score;
-        //         } else {
-        //                 document.querySelector('.guess-message').textContent = 'Game Over';
-        //                 document.querySelector('.score').textContent = 0;
-        //         }
 });
 
 
