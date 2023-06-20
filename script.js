@@ -1,11 +1,20 @@
 'use strict';
 
+//сделать кнопку сначала
+
 const secretNumber = Math.trunc(Math.random() * 20) + 1;
 let score = 20;
 
 console.log(secretNumber);
 
-document.querySelector('.question').textContent = secretNumber;
+document.querySelector('.again').addEventListener('click', function () {
+        document.querySelector('.guess-message').textContent = "Начни угадывать!";
+        document.querySelector('body').style.backgroundColor = '#000';
+        document.querySelector('.question').style.width = '25rem';
+        document.querySelector('.question').textContent = '???';
+        document.querySelector('.score').textContent = 20;
+        document.querySelector('.number-input').value = '';
+})
 
 document.querySelector('.check').addEventListener('click', function () {
         const guessingNumber = Number(document.
@@ -19,6 +28,7 @@ document.querySelector('.check').addEventListener('click', function () {
                 //Player won
         } else if (guessingNumber === secretNumber) {
                 document.querySelector('.guess-message').textContent = 'Правильно';
+                document.querySelector('.question').textContent = secretNumber;
                 document.querySelector('body').style.backgroundColor = 'rgb(9, 250, 21)';
                 document.querySelector('.question').style.width = '50rem';
 
