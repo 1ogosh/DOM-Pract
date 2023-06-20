@@ -12,11 +12,17 @@ document.querySelector('.check').addEventListener('click', function () {
                 querySelector('.number-input').value);
         console.log(guessingNumber, typeof guessingNumber);
 
+        //No input
         if (!guessingNumber) {
-                document.querySelector('.guess-message').
-                        textContent = 'Введите число';
+                document.querySelector('.guess-message').textContent = 'Введите число';
+
+                //Player won
         } else if (guessingNumber === secretNumber) {
                 document.querySelector('.guess-message').textContent = 'Правильно';
+                document.querySelector('body').style.backgroundColor = 'rgb(9, 250, 21)';
+                document.querySelector('.question').style.width = '50rem';
+
+                //Too high number
         } else if (guessingNumber > secretNumber) {
 
                 if (score > 1) {
@@ -27,7 +33,7 @@ document.querySelector('.check').addEventListener('click', function () {
                         document.querySelector('.guess-message').textContent = 'Game Over';
                 }
 
-
+                //Too low number
         } else if (guessingNumber < secretNumber) {
                 if (score > 1) {
                         document.querySelector('.guess-message').textContent = 'Слишком маленькое число';
